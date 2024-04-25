@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Редагування доручення
+{% endblock %}
+
+{% block header %}
+    <div class="titl">
+        Редагування доручення
+    </div>
+{% endblock %}
+
+{% block content %}
+    <form method="post" class="add-form-container">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="add-form-button">Зберегти</button>
+    </form>
+    <div class="add-back">
+        <a href="{% url 'home' %}">⬅ Відмінити</a>
+    </div>
+{% endblock %}

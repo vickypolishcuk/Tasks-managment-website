@@ -1,0 +1,153 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-color: #FFA630;
+    text-align: center;
+}
+header .titl {
+    padding: 30px;
+    font-family: "Lucida Handwriting", cursive;
+    font-size: 30px;
+}
+
+.subtitl form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    font-style: italic;
+    font-size: 18px;
+    color: #453823;
+}
+
+.subtitl a {
+    font-style: normal;
+    font-family: cursive;
+}
+
+a:hover, a:hover {
+    text-shadow: 0.5px 0.5px #000000;
+}
+
+body {
+    background-color: lightblue;
+}
+
+.list_tasks, .chart {
+    width: 42.2%;
+    float: left;
+    box-sizing: border-box;
+}
+
+.list_tasks {
+    width: 57.8%;
+    padding: 20px;
+}
+
+.task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-item {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+
+.task-item.completed {
+    background-color: #D7E8BA;
+}
+
+.filter-form {
+    margin-bottom: 20px;
+}
+
+.search-input,
+.status-select,
+.submit-button,
+.generate-chart-button {
+    margin-right: 10px;
+    padding: 7px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-input:focus,
+.status-select:focus,
+.submit-button:focus,
+.generate-chart-button:focus {
+    outline: none;
+}
+
+.submit-button,
+.generate-chart-button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.submit-button:hover,
+.generate-chart-button:hover {
+    background-color: #0004ff;
+}
+
+.add_tasks {
+    padding: 20px;
+    text-align: center;
+}
+
+.add_tasks a {
+    font-size: 20px;
+    padding: 5px;
+    background-color: #FFA630;
+    border: 0.5px black solid;
+}
+
+.add-form-container {
+    margin: 20px;
+    font-size: 18px;
+}
+
+.add-form-container input[type="text"],
+.add-form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.add-form-button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.add-form-button:hover {
+    background-color: #555;
+}
+
+.add-back {
+    padding-left: 20px;
+}
+.add-back a {
+    font-size: 20px;
+}
+
+.del-p {
+    margin: 20px;
+    font-size: 20px;
+}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Видалення доручення
+{% endblock %}
+
+{% block header %}
+    <div class="titl">
+        Видалення доручення
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="del-p">
+        <p>Ви впевнені, що хочете видалити "{{ task.title }}"?</p>
+    </div>
+    <form method="post" class="add-form-container">
+        {% csrf_token %}
+        <button type="submit" class="add-form-button">Так, видалити</button>
+    </form>
+    <div class="add-back">
+        <a href="{% url 'home' %}" > ⬅ Ні, повернути назад</a>
+    </div>
+{% endblock %}
+
