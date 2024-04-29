@@ -13,12 +13,20 @@
             <input type="text" name="q" placeholder="Пошук..." class="search-input">
             <select name="status" class="status-select">
                 <option value="">Всі</option>
-                <option value="To Do" {% if request.GET.status == 'To Do' %}selected{% endif %}>To Do</option>
-                <option value="Done" {% if request.GET.status == 'Done' %}selected{% endif %}>Done</option>
+                <option value="To Do" {% if status == 'To Do' %}selected{% endif %}>To Do</option>
+                <option value="Done" {% if status == 'Done' %}selected{% endif %}>Done</option>
+            </select>
+            <select name="sort_by" class="status-select">
+                <option value="">-</option>
+                <option value="created_date" {% if sort_by == 'created_date' %} selected {% endif %}>Дата створення</option>
+                <option value="-created_date" {% if sort_by == '-created_date' %} selected {% endif %}>Дата створення реверс</option>
+                <option value="final_date" {% if sort_by == 'final_date' %} selected {% endif %}>Кінцева дата</option>
+                <option value="-final_date" {% if sort_by == '-final_date' %} selected {% endif %}>Кінцева дата реверс</option>
             </select>
             <button type="submit" class="submit-button">Пошук</button>
-            <button type="submit" name="action" value="generate_chart" class="generate-chart-button">Створити графік</button>
-            {% if query or chart_generated or status %}
+            <button type="submit" name="action" value="generate_chart1" class="generate-chart-button">Створити графік 1</button>
+            <button type="submit" name="action" value="generate_chart2" class="generate-chart-button">Створити графік 2</button>
+            {% if query or chart_generated1 or chart_generated2 or status or sort_by %}
                 <a href="{% url 'home' %}">Очистити</a>
             {% endif %}
         </form>
@@ -28,25 +36,33 @@
 {% block content %}
     <div class="list_tasks">
         <ul class="task-list">
-        {% for task in tasks %}
-            <li class="task-item {% if task.status == 'Done' %}completed{% endif %}" >
-                <h3>{{ task.title }}</h3>
-                <p>{{ task.description }}
-                (<a href="{% url 'delete_task' task.id %}">видалити</a>)
-                    (<a href="{% url 'edit_task' task.id %}">редагувати</a>)</p>
-                Статус: {{ task.status }}
-                {% if task.status == 'To Do' %} ⏳ {% else %} ✔ {% endif %}
-                (<a href="{% url 'change_status' task.id %}">змінити статус</a>)
-            </li>
-        {% endfor %}
+        {% if not tasks %} Доручень немає
+        {% else %}
+            {% for task in tasks %}
+                <li class="task-item {% if task.status == 'Done' %}completed{% endif %}" >
+                    <h3>{{ task.title }}</h3>
+                    <p>{{ task.description }}
+                    (<a href="{% url 'delete_task' task.id %}">видалити</a>)
+                        (<a href="{% url 'edit_task' task.id %}">редагувати</a>)</p>
+                    <p>Статус: {{ task.status }}
+                    {% if task.status == 'To Do' %} ⏳ {% else %} ✔ {% endif %}
+                    (<a href="{% url 'change_status' task.id %}">змінити статус</a>)</p>
+                    <p>Кому: {{ task.executor }}</p>
+                    <p>Кінцева дата: {{ task.final_date }}</p>
+                </li>
+            {% endfor %}
+        {% endif %}
         </ul>
         <div class="add_tasks">
             <a href="{% url 'add_task' %}">Додати доручення</a>
         </div>
     </div>
     <div class="chart">
-        {% if chart_generated %}
-            <img src="../static/chart.png" alt="Графік">
+        {% if chart_generated1 %}
+            <img src="../static/chart1.png" alt="Графік">
+        {% endif %}
+        {% if chart_generated2 %}
+            <img src="../static/chart2.png" alt="Графік">
         {% endif %}
     </div>
 {% endblock %}
