@@ -62,6 +62,10 @@ body {
     padding: 10px;
 }
 
+.task-item.time_out {
+    background-color: #ff4d4d;
+}
+
 .task-item.completed {
     background-color: #D7E8BA;
 }
