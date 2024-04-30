@@ -10,7 +10,7 @@
     </div>
     <div class="subtitl">
         <form method="GET" class="filter-form">
-            <input type="text" name="q" placeholder="Пошук..." class="search-input">
+            <input type="text" name="q" placeholder="Пошук..." class="search-input" value="{{ query }}">
             <select name="status" class="status-select">
                 <option value="">Всі</option>
                 <option value="To Do" {% if status == 'To Do' %}selected{% endif %}>To Do</option>
@@ -39,7 +39,7 @@
         {% if not tasks %} Доручень немає
         {% else %}
             {% for task in tasks %}
-                <li class="task-item {% if task.status == 'Done' %}completed{% endif %}" >
+                <li class="task-item {% if task.status == 'Done' %}completed{% endif %}" {% if task.final_date < today %}time_out{% endif %}" >
                     <h3>{{ task.title }}</h3>
                     <p>{{ task.description }}
                     (<a href="{% url 'delete_task' task.id %}">видалити</a>)
