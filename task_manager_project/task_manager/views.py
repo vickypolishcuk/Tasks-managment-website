@@ -14,8 +14,10 @@ def home(request):
     sort_by = request.GET.get('sort_by')
 
     tasks = Task.objects.all()
-    if query:
-        tasks = tasks.filter(Q(title__icontains=query) | Q(description__icontains=query))
+        if query:
+        tasks = tasks.filter(Q(title__icontains=query) | Q(description__icontains=query) | Q(executor__icontains=query))
+    else:
+        query = ""
     if status:
         tasks = tasks.filter(status=status)
     if sort_by:
@@ -81,8 +83,9 @@ def home(request):
         chart_generated1 = False
         chart_generated2 = False
 
+    today = timezone.now()
     return render(request, 'home.html', {'tasks': tasks, 'query': query, 'chart_generated1': chart_generated1,
-                                         'chart_generated2': chart_generated2, 'status': status, 'sort_by': sort_by})
+                                         'chart_generated2': chart_generated2, 'status': status, 'sort_by': sort_by, 'today': today})
 
 def add_task(request):
     if request.method == 'POST':
